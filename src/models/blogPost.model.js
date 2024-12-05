@@ -21,7 +21,7 @@ const BlogPostSchema = new mongoose.Schema(
     },
   },
   {
-    collection: "blogCategories",
+    collection: "blogPosts",
     timestamps: true,
   }
 );
