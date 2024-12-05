@@ -1,6 +1,6 @@
 "use strict";
 
-const blogCategoryModel = require("../models/blogCategory.model");
+const { NotFoundError } = require("../errors/customErrors");
 const { BlogCategory } = require("../models/blogCategory.model");
 
 // BlogCategory Controller:
@@ -28,6 +28,9 @@ module.exports.blogCategory = {
       { _id: req.params.categoryId },
       { _id: 0, name: 1 }
     );
+    if (!result) {
+      throw new NotFoundError("No matching documents found");
+    }
     res.send({
       isError: false,
       result,
@@ -46,10 +49,10 @@ module.exports.blogCategory = {
       return res.status(404).send("No matching documents found");
     }
 
-    res.send({
+    res.status(202).send({
       isError: false,
       result,
-      update: await BlogCategory.findOne({ _id: req.params.categoryId }),
+      new: await BlogCategory.findOne({ _id: req.params.categoryId }),
     });
   },
 
@@ -57,10 +60,11 @@ module.exports.blogCategory = {
     const result = await BlogCategory.deleteOne({ _id: req.params.categoryId });
     //deletedCount
     if (result.deletedCountt === 0) {
-      //throw new CustomError("No matching documents found")
-      return res.status(404).send("No matching documents found");
+      throw new CustomError("No matching documents found");
+      //   return res.status(404).send("No matching documents found");
     }
-    res.send({
+    //! 204 ile veri gönderilmez No_Content
+    res.status(204).send({
       result,
     });
   },
