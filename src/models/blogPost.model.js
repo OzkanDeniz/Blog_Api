@@ -20,6 +20,8 @@ const BlogPostSchema = new mongoose.Schema(
       required: true,
     },
   },
+  // createdAt=true  // timestamps: true
+  // updatedAt=true //  timestamps: true
   {
     collection: "blogPosts",
     timestamps: true,
