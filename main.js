@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8000;
 
 // (7)Accept json
 app.use(express.json());
-// (8)DB connection with normal function config içindeki dosyada
+// (8)DB connection with normal function config içindeki dosyada mevcut
 require("./src/config/dbConnection")();
 // (9)DB connection with class config içindeki dosyada
 // require("./src/config/dbConnection")();
