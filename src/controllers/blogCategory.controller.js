@@ -40,7 +40,7 @@ module.exports.blogCategory = {
   //matchedCount = 0,1,2   modifiedCount = 0,1
   update: async (req, res) => {
     //updateone({filter},{update},{options})
-    const result = BlogCategory.updateOne(
+    const result = await BlogCategory.updateOne(
       { _id: req.params.categoryId },
       req.body
     );
