@@ -1,19 +1,19 @@
 "use strict";
 
 const router = require("express").Router();
-const { BlogPost } = require("../controllers/BlogPost.controller");
+const { blogPost } = require("../controllers/blogPost.controller");
 
 //Call Controllers:
 
 // /blog/category/
-router.route("/category").get(BlogPost.list).post(BlogPost.create);
+router.route("/").get(blogPost.list).post(blogPost.create);
 
 // /blog/category/id
 router
-  .route("/:categoryId")
-  .get(BlogPost.read)
-  .put(BlogPost.update)
-  .patch(BlogPost.update)
-  .delete(BlogPost.delete);
+  .route("/:postId")
+  .get(blogPost.read)
+  .put(blogPost.update)
+  .patch(blogPost.update)
+  .delete(blogPost.delete);
 
-module.exports = router
+module.exports = router;

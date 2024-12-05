@@ -27,11 +27,17 @@ require("./src/config/dbConnection")();
 app.all("/", (req, res) => {
   res.send("WELCOME TO BLOG APİ");
 });
+/*-------------------------------------------*/
+// Routes:
+app.use("/blog/category",require("./src/routes/blogCategory.router"))
+app.use("/blog/post",require("./src/routes/blogPost.router"))
 
+/*-------------------------------------------*/
 app.use("*", (req, res) => {
   res.status(404).send({ isError: true, message: "The route is not found!" });
 });
-
+/*-------------------------------------------*/
+//Catch Errors:
 app.use(require("./src/middlewares/errorHandler"));
 /*-------------------------------------------*/
 //(6)
