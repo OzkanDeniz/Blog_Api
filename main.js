@@ -29,6 +29,7 @@ app.all("/", (req, res) => {
 
 app.use("/blog/category",require("./src/routes/blogCategory.router"))
 app.use("/blog/post",require("./src/routes/blogPost.router"))
+app.use("/user",require("./src/routes/user.router"))
 
 /*-------------------------------------------*/
 //(11) URL("*")

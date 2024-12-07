@@ -6,7 +6,7 @@
 
 // Call Models:
 const { User } = require("../models/user.model");
-const { NotFoundError, BadRequestError } = require("../errors/customError");
+const { NotFoundError, BadRequestError } = require("../errors/customErrors");
 /* ------------------------------------------------------- */
 
 module.exports.user = {
