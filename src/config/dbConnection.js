@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const { customErrors } = require("../errors/customErrors");
 
 //(8)DB connection with normal function config içindeki dosyada
-const dbConnection = () => {
+const dbConnection = async () => {
   if (!process.env.MONGODB_URI) {
     throw new customErrors("mongodb url is necessary!");
   }
