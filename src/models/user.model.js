@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema(
       // },
       //!2.yöntem
       // validate: (email)=>email.includes("@") && email.includes(".")
-      //!3.yöntem 
+      //!3.yöntem
       validate: [
         (email) => {
           return email.includes("@") && email.includes(".");
@@ -31,6 +31,14 @@ const UserSchema = new mongoose.Schema(
       //   },
       //   message:"Email format is incorrect"
       // }
+      //!5.yöntem
+      // validate: [
+      //   function (email) {
+      //     console.log("this", this);
+      //     return email.include("@") && email.includes(".");
+      //   },
+      //   "Email format is incorrect",
+      // ],
     },
     //!password alanı database e direkt kaydedilmez bu nedenle hash fonksiyonu ile hashing yapılır(helper doyasında mevcut)
     password: {
