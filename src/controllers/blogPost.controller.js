@@ -6,7 +6,7 @@
 
 // Call Models:
 const { BlogPost } = require("../models/blogPost.model");
-const { NotFoundError } = require("../errors/customError");
+const {NotFoundError}=require("../errors/customErrors");
 /* ------------------------------------------------------- */
 
 module.exports.blogPost = {

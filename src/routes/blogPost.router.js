@@ -5,12 +5,12 @@ const { blogPost } = require("../controllers/blogPost.controller");
 
 //Call Controllers:
 
-// /blog/category/
-router.route("/").get(blogPost.list).post(blogPost.create);
+// /blog/post/
+router.route("/post").get(blogPost.list).post(blogPost.create);
 
-// /blog/category/id
+// /blog/post/id
 router
-  .route("/:postId")
+  .route("/post/:postId")
   .get(blogPost.read)
   .put(blogPost.update)
   .patch(blogPost.update)
