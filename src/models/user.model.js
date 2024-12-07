@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema(
       unique: true,
       required: [true, "Email is required"],
     },
+    //!password alanı database e direkt kaydedilmez
     password: {
       type: String,
       trim: true,
@@ -24,4 +25,4 @@ const UserSchema = new mongoose.Schema(
   }
 );
 
-module.exports = { BlogPost: mongoose.model("Users", UserSchema) };
+module.exports = { Users: mongoose.model("Users", UserSchema) };
