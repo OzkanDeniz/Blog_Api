@@ -6,11 +6,11 @@ const { blogPost } = require("../controllers/blogPost.controller");
 //Call Controllers:
 
 // /blog/post/
-router.route("/post").get(blogPost.list).post(blogPost.create);
+router.route("/").get(blogPost.list).post(blogPost.create);
 
 // /blog/post/id
 router
-  .route("/post/:postId")
+  .route("/:postId")
   .get(blogPost.read)
   .put(blogPost.update)
   .patch(blogPost.update)
