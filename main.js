@@ -30,6 +30,7 @@ app.all("/", (req, res) => {
 app.use("/blog/category",require("./src/routes/blogCategory.router"))
 app.use("/blog/post",require("./src/routes/blogPost.router"))
 app.use("/blog/user",require("./src/routes/user.router"))
+app.use("/auth",require("./src/routes/auth.router")) //login logout
 
 /*-------------------------------------------*/
 //(11) URL("*")
