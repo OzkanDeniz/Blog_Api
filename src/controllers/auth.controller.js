@@ -18,7 +18,7 @@ module.exports = {
           res.status(200).send({
             error: false,
             message: "Login OK",
-            use,
+            user,
           });
         } else {
           res.errorStatusCode = 401;
