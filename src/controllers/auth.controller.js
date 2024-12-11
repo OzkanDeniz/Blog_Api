@@ -5,13 +5,14 @@ const { User } = require("../models/user.model");
 const passwordEncrypt = require("../helpers/passwordEncrypt");
 
 module.exports = {
-  login: async (req, res) => {
-    const { email, password } = req.body;
+  login: async (req, res) => {  
+
+    const { email, password } = req.body;  //kullanıcıdan email ve password istedik
 
     if (email && password) {
       //Email ve password gönderildi
 
-      const user = await User.findOne({ email }); //!User modeline git findone yap ve burda böyle bir emaile sahip kullanıcı varmı sorgula, varsa bana bilgilerini ver.
+      const user = await User.findOne({ email }); //!User modeline git findone yap ve burda böyle bir emaile sahip kullanıcı varmı veritabanında sorgula, varsa bana bilgilerini ver.
 
       if (user) {
         //User OK.
@@ -58,6 +59,7 @@ module.exports = {
   },
 
   logout: async (req, res) => {
+    //Session /Cookie verilerini silmek içün "null" eşitlemek yeterli
     req.session = null;
 
     res.status(200).send({
