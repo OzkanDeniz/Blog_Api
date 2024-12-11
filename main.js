@@ -36,7 +36,7 @@ app.use(
 //(15) Check user-data from session:
 
 //Moved to file:
-app.use(require("./src/middlewares/userControl"))
+app.use(require("./src/middlewares/userControl"));
 
 /*-------------------------------------------*/
 //(13) Routes:
@@ -49,7 +49,7 @@ app.all("/", (req, res) => {
   // res.send("WELCOME TO BLOG APİ");
   res.send({
     message: "WELCOME TO BLOG API",
-    user:req.user, // Logined user data
+    user: req.user, // Logined user data
     session: req.session,
   });
 });
@@ -65,3 +65,7 @@ app.use(require("./src/middlewares/errorHandler"));
 /*-------------------------------------------*/
 //(6)
 app.listen(PORT, () => console.log("Running: http://127.0.0.1:" + PORT));
+/*-------------------------------------------*/
+//Test verisi içindir. Bir kez çalıştır.
+// require("./sync")();
+
