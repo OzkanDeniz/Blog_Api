@@ -1,8 +1,8 @@
 "use strict";
 
-const { User } = require("./src/models/user.model");
+const { User } = require("../models/user.model");
 
-app.use(async (req, res, next) => {
+async (req, res, next) => {
   console.log("Session", req.session);
 
   // login olan user datasını buraya kaydedeceğiz.
@@ -27,4 +27,4 @@ app.use(async (req, res, next) => {
   }
 
   next();
-});
+};
