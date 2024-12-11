@@ -19,18 +19,34 @@ require("./src/config/dbConnection")();
 // require("./src/config/dbConnection")();
 /*-------------------------------------------*/
 
-//(10) URL("/")
-app.all("/", (req, res) => {
-  res.send("WELCOME TO BLOG APİ");
-});
+/*-------------------------------------------*/
+//*(14) SESSIONS & COOKİES
+// npm i cookie-session
+
+const session = require("cookie-session");
+
+//Run with general settings:
+app.use(
+  session({
+    secret: process.env.SECRET_KEY, // Cookie datasını şifreleme anahtarı.
+    // maxAge: 1000 * 60 * 60 * 24 * 3, // miliSeconds // 3 days
+  })
+); //middleware ise app.use() kullanılır.
 
 /*-------------------------------------------*/
 //(13) Routes:
-
-app.use("/blog/category",require("./src/routes/blogCategory.router"))
-app.use("/blog/post",require("./src/routes/blogPost.router"))
-app.use("/blog/user",require("./src/routes/user.router"))
-app.use("/auth",require("./src/routes/auth.router")) //login logout
+app.use("/blog/category", require("./src/routes/blogCategory.router"));
+app.use("/blog/post", require("./src/routes/blogPost.router"));
+app.use("/blog/user", require("./src/routes/user.router"));
+app.use("/auth", require("./src/routes/auth.router")); //login logout
+//(10) URL("/")
+app.all("/", (req, res) => {
+  // res.send("WELCOME TO BLOG APİ");
+  res.send({
+    message: "WELCOME TO BLOG API",
+    session: req.session,
+  });
+});
 
 /*-------------------------------------------*/
 //(11) URL("*")
