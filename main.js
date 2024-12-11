@@ -65,6 +65,7 @@ app.use(
 //   next();
 // });
 //!useControl middleware e taşındı
+app.use(require("./src/middlewares/userControl"))
 
 /*-------------------------------------------*/
 //(13) Routes:

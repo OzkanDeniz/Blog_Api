@@ -1,8 +1,10 @@
 "use strict";
 
+// Middleware: User check from session
+
 const { User } = require("../models/user.model");
 
-async (req, res, next) => {
+module.exports = async (req, res, next) => {
   console.log("Session", req.session);
 
   // login olan user datasını buraya kaydedeceğiz.
