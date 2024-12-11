@@ -6,7 +6,7 @@
 
 // Call Models:
 const { BlogPost } = require("../models/blogPost.model");
-const {NotFoundError}=require("../errors/customErrors");
+const { NotFoundError } = require("../errors/customErrors");
 /* ------------------------------------------------------- */
 
 module.exports.blogPost = {
@@ -21,6 +21,9 @@ module.exports.blogPost = {
   // CRUD ->
 
   create: async (req, res) => {
+    //Login olmuşsa, userID'yi req.user'dan alalım. (session)
+    if(req.user) req.body.userId = req.user._id; // ihtiyacın olan id yi login olmuş olan id den al
+
     const result = await BlogPost.create(req.body);
 
     res.send({

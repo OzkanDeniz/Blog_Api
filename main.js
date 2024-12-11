@@ -49,7 +49,7 @@ app.all("/", (req, res) => {
   // res.send("WELCOME TO BLOG APİ");
   res.send({
     message: "WELCOME TO BLOG API",
-    user:req.user,
+    user:req.user, // Logined user data
     session: req.session,
   });
 });
