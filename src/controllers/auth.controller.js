@@ -34,7 +34,7 @@ module.exports = {
           if (req.body?.remindMe) {
             req.session.remindMe = true;
             //Set maxAge to 3 days:
-            res.sessionOptions.maxAge = 100 * 60 * 60 * 24 * 3;
+            req.sessionOptions.maxAge = 100 * 60 * 60 * 24 * 3;
           }
           /* COOKİE */
 
