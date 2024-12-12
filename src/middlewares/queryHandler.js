@@ -66,9 +66,17 @@ module.exports = async (req, res, next) => {
       sort,
       skip,
       limit,
-      page,
+      page: {
+        previous: page > 1 ? page - 1 : false,
+        currnet: page,
+        next: page + 1,
+        total: Math.ceil(data.length / limit),
+      },
+      totalRecords: data.length,
     };
     return details;
   };
+  if (details.pages.next > details.pages.total) detail.pages.next = false;
+  if (details.totalRecords <= limit) details.pages = false;
   next();
 };
