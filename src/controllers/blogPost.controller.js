@@ -34,20 +34,18 @@ module.exports.blogPost = {
 
     // SORTING:
     //URL?sort[fieldName1]=asc&sort[fieldName2]=desc  (asc: A-Z, desc: Z-A)
-    const sort = req.query?.sort
+    const sort = req.query?.sort;
     // console.log(sort)
 
     //PAGINATION:
     //URL?page=3&limit=20
     //LIMIT:
-    let limit = req.query?.limit
-    console.log(limit)
-
-
-
+    let limit = Number(req.query?.limit);
+    limit = limit > 0 ? limit : Number(process.env?.PAGE_SIZE || 20);
+    console.log(limit, typeof limit);
 
     // const data = await BlogPost.find().populate("categoryId");
-    const data = await BlogPost.find({ ...filter, ...search }).sort(sort).limit(limit)
+    const data = await BlogPost.find({ ...filter, ...search }).sort(sort).limit(limit);
 
     res.send({
       result: data,
