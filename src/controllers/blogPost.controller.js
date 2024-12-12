@@ -12,9 +12,10 @@ const { NotFoundError } = require("../errors/customErrors");
 module.exports.blogPost = {
   list: async (req, res) => {
     //Moved to middleware:
-    const data = await res.getModelList(BlogPost, ["userId", "categoryId"]);
+    const data = await res.getModelList(BlogPost, ["userId", "categoryId"]); //resulttaki kayıtları verir
 
     res.send({
+      details: await res.getModelListDetails(BlogPost), //resulttaki kayıtların detaylarını verir
       result: data,
     });
   },

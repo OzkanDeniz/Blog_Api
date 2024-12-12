@@ -47,7 +47,7 @@ module.exports = async (req, res, next) => {
   // const data = await BlogPost.find().populate("categoryId");
   //   const data = await BlogPost.find({ ...filter, ...search }).sort(sort).limit(limit).skip(skip).populate(["userId", "categoryId"]);
 
-  //GetMpdelList
+  //GetMpdelList kayıtları getirir
   res.getModelList = async function (Model, populate = null) {
     return await Model.find({ ...filter, ...search })
       .sort(sort)
@@ -56,5 +56,19 @@ module.exports = async (req, res, next) => {
       .populate(populate);
   };
 
+  //GetModelListDetails kayıtların detaylarını getirir
+  res.getModelListDetails = async function (Model) {
+    const data = await Model.find({ ...filter, ...search });
+
+    let details = {
+      filter,
+      search,
+      sort,
+      skip,
+      limit,
+      page,
+    };
+    return details;
+  };
   next();
 };
