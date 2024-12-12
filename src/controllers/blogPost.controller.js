@@ -55,10 +55,7 @@ module.exports.blogPost = {
     // console.log(page, skip, limit);
 
     // const data = await BlogPost.find().populate("categoryId");
-    const data = await BlogPost.find({ ...filter, ...search })
-      .sort(sort)
-      .limit(limit)
-      .skip(skip);
+    const data = await BlogPost.find({ ...filter, ...search }).sort(sort).limit(limit).skip(skip).populate(['userId','categoryId'])
 
     res.send({
       result: data,
