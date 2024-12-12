@@ -38,14 +38,27 @@ module.exports.blogPost = {
     // console.log(sort)
 
     //PAGINATION:
-    //URL?page=3&limit=20
+    //URL?page=3&limit=20&skip=10
     //LIMIT:
     let limit = Number(req.query?.limit);
-    limit = limit > 0 ? limit : Number(process.env?.PAGE_SIZE || 20);
-    console.log(limit, typeof limit);
+    limit = limit > 0 ? limit : Number(process.env?.PAGE_SIZE || 20); //sayfa başı kayıt sayısı default 20 ve ayarlanabilir
+    // console.log(limit, typeof limit);
+
+    //PAGE:
+    let page = Number(req.query?.page);
+    page = page > 0 ? page : 1;
+    // console.log(page)
+
+    //SKIP:
+    let skip = Number(req.query?.skip);
+    skip = skip > 0 ? skip : (page - 1) * limit;
+    // console.log(page, skip, limit);
 
     // const data = await BlogPost.find().populate("categoryId");
-    const data = await BlogPost.find({ ...filter, ...search }).sort(sort).limit(limit);
+    const data = await BlogPost.find({ ...filter, ...search })
+      .sort(sort)
+      .limit(limit)
+      .skip(skip);
 
     res.send({
       result: data,
