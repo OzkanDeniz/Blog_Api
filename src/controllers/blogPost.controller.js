@@ -11,7 +11,29 @@ const { NotFoundError } = require("../errors/customErrors");
 
 module.exports.blogPost = {
   list: async (req, res) => {
-    const data = await BlogPost.find().populate("categoryId");
+    //* FILTERING - SEARCHING - SORTING - PAGINATION *//
+
+    //  console.log(req.query)
+
+    // FILTERING:
+    //URL?filter[fieldName1]=value1&filter[fieldName2]=value2
+    const filter = req.query?.filter || {};
+      // console.log(filter)
+    // { userId: '6751e0e727ae5347fc01afd7', title: 'test 5 title' }
+
+    // SEARCHING:
+    //URL?search[fieldName1]=value1&search[fieldName2]=value2
+    const search = req.query?.search || {};
+    console.log(search);
+    // { title: { $regex: "test 5 title", $options: "i" } }  //22. satırdaki kodu regex hale çevirmeliyiz.
+    for (let key in search) {
+      search[key] = { $regex: search[key] };
+      // search[key] = {$regex: search[key], $options:"i"}
+    }
+    console.log(search);
+
+    // const data = await BlogPost.find().populate("categoryId");
+    const data = await BlogPost.find({ ...filter, ...search });
 
     res.send({
       result: data,
@@ -22,7 +44,7 @@ module.exports.blogPost = {
 
   create: async (req, res) => {
     //Login olmuşsa, userID'yi req.user'dan alalım. (session)
-    if(req.user) req.body.userId = req.user._id; // ihtiyacın olan id yi login olmuş olan id den al
+    if (req.user) req.body.userId = req.user._id; // ihtiyacın olan id yi login olmuş olan id den al
 
     const result = await BlogPost.create(req.body);
 

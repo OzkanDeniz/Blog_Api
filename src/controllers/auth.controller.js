@@ -5,9 +5,8 @@ const { User } = require("../models/user.model");
 const passwordEncrypt = require("../helpers/passwordEncrypt");
 
 module.exports = {
-  login: async (req, res) => {  
-
-    const { email, password } = req.body;  //kullanıcıdan email ve password istedik
+  login: async (req, res) => {
+    const { email, password } = req.body; //kullanıcıdan email ve password istedik
 
     if (email && password) {
       //Email ve password gönderildi
