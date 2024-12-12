@@ -39,6 +39,11 @@ app.use(
 app.use(require("./src/middlewares/userControl"));
 
 /*-------------------------------------------*/
+//(16)Middleware: Filter Search Sort Pagination
+app.use(require("./src/middlewares/queryHandler"));
+
+/*-------------------------------------------*/
+
 //(13) Routes:
 app.use("/blog/category", require("./src/routes/blogCategory.router"));
 app.use("/blog/post", require("./src/routes/blogPost.router"));
@@ -68,4 +73,3 @@ app.listen(PORT, () => console.log("Running: http://127.0.0.1:" + PORT));
 /*-------------------------------------------*/
 //Test verisi içindir. Bir kez çalıştır.
 // require("./sync")();
-
